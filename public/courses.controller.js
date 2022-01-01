@@ -26,7 +26,7 @@ angular.module('CoursesApp', []) // Läs 1 nedan
         $scope.courses = null;
         $scope.subjects = null;
         $scope.myCourses = null;
-
+        $scope.courses=null;
 
         
     
@@ -37,7 +37,7 @@ angular.module('CoursesApp', []) // Läs 1 nedan
             // this callback will be called asynchronously when the response is available
 
             // För att underlätta användningen av data i response lagrar vi det i en variabel
-            const data = response.data;
+            $scope.courses = response.data;
             
             // Läs 5 nedan
            // $scope.myCourses = data.myCourses;
@@ -71,6 +71,8 @@ angular.module('CoursesApp', []) // Läs 1 nedan
         $scope.getAllMyCourses = function () {
             $http.get('api/my/courses').then(
                 function successCallback(response) {
+                    getAllCourses();
+                    console.log($scope.courses);
                     // this callback will be called asynchronously when the response is available
                     $scope.myCourses = response.data.myCourses;
                 },
